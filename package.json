@@ -1,0 +1,17 @@
+{
+  "name": "tinypng_clone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "imagemin": "^7.0.1",
+    "imagemin-jpeg-recompress": "^7.0.0",
+    "imagemin-pngquant": "^9.0.2"
+  }
+}
