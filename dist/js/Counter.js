@@ -7,7 +7,7 @@ export default class Counter {
         return this._value;
     }
 
-    increementValue() {
+    incrementValue() {
         this._value += 1;
     }
 }

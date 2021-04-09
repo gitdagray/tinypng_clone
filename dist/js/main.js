@@ -39,7 +39,7 @@ const handleDrop = (e) => {
 const handleFiles = (fileArray) => {
     fileArray.forEach(file => {
         const fileID = counter.getValue();
-        counter.increementValue();
+        counter.incrementValue();
         if (((file.size / 1024) / 1024) > 4) return alert("File over 4 MB");
         createResult(file, fileID);
         uploadFile(file, fileID);
