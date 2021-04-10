@@ -40,7 +40,7 @@ const handleFiles = (fileArray) => {
     fileArray.forEach(file => {
         const fileID = counter.getValue();
         counter.incrementValue();
-        if (((file.size / 1024) / 1024) > 4) return alert("File over 4 MB");
+        if (file.size > 4 * 1024 * 1024) return alert("File over 4 MB");
         createResult(file, fileID);
         uploadFile(file, fileID);
     });
@@ -54,7 +54,6 @@ const createResult = (file, fileID) => {
     p1.textContent = file.name;
 
     const p2 = document.createElement("p");
-    p2.id = `orig_size_${file.name}_${fileID}`;
     p2.className = "results__size";
     p2.textContent = origFileSizeString;
 
@@ -100,7 +99,7 @@ const createResult = (file, fileID) => {
 
 const getFileSizeString = (filesize) => {
     const sizeInKB = parseFloat(filesize) / 1024;
-    const sizeInMB = ((parseFloat(filesize) / 1024) / 1024);
+    const sizeInMB = (sizeInKB / 1024);
     return sizeInKB > 1024 ? `${sizeInMB.toFixed(1)} MB` : `${sizeInKB.toFixed(1)} KB`;
 }
 
@@ -125,8 +124,7 @@ const uploadFile = (file, fileID) => {
         try {
             const fileStream = await fetch(url, {
                 method: "POST",
-                body: JSON.stringify(body),
-                isBase64Encoded: true
+                body: JSON.stringify(body)
             });
             const imgJson = await fileStream.json();
             if (imgJson.error) return handleFileError(filename, fileID);
